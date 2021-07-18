@@ -25,6 +25,8 @@ namespace Telegram.Bot.Examples.Echo
             var me = await Bot.GetMeAsync();
             Console.Title = me.Username;
 
+
+            await Bot.SendTextMessageAsync(-542968508, "Я начал следить");
             Bot.OnMessage += BotOnMessageReceived;
             Bot.OnMessageEdited += BotOnMessageReceived;
             Bot.OnInlineResultChosen += BotOnChosenInlineResultReceived;
@@ -33,7 +35,7 @@ namespace Telegram.Bot.Examples.Echo
             Bot.StartReceiving(Array.Empty<UpdateType>());
             Console.WriteLine($"Start listening for @{me.Username}");
 
-            Console.ReadLine();
+            await Task.Delay(int.MaxValue);
             Bot.StopReceiving();
         }
 
@@ -70,6 +72,7 @@ namespace Telegram.Bot.Examples.Echo
         {
             await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
 
+            Console.WriteLine(message.Chat.Id);
             await Task.Delay(500);
 
             if (Debt > 0)

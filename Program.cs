@@ -35,7 +35,7 @@ namespace Telegram.Bot.Examples.Echo
             Bot.StartReceiving(Array.Empty<UpdateType>());
             Console.WriteLine($"Start listening for @{me.Username}");
 
-            await Task.Delay(int.MaxValue);
+            await Task.Delay(-1);
             Bot.StopReceiving();
         }
 
